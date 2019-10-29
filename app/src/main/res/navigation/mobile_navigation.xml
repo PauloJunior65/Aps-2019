@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_listar">
+
+    <fragment
+        android:id="@+id/nav_listar"
+        android:name="br.org.aps.ui.listar.ListarFragment"
+        android:label="@string/menu_listar"
+        tools:layout="@layout/fragment_listar" />
+
+    <fragment
+        android:id="@+id/nav_myregistro"
+        android:name="br.org.aps.ui.myregistro.MyRegistroFragment"
+        android:label="@string/menu_myregistro"
+        tools:layout="@layout/fragment_myregistro" />
+
+    <fragment
+        android:id="@+id/nav_excluir"
+        android:name="br.org.aps.ui.excluir.ExcluirFragment"
+        android:label="@string/menu_excluir"
+        tools:layout="@layout/fragment_excluir" />
+
+    <fragment
+        android:id="@+id/nav_avaliar"
+        android:name="br.org.aps.ui.avaliar.AvaliarFragment"
+        android:label="@string/menu_avaliar"
+        tools:layout="@layout/fragment_avaliar" />
+
+    <fragment
+        android:id="@+id/nav_addrem"
+        android:name="br.org.aps.ui.addrem.AddRemFragment"
+        android:label="@string/menu_addrem"
+        tools:layout="@layout/fragment_addrem" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="br.org.aps.ui.login.LoginFragment"
+        android:label="@string/menu_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>
