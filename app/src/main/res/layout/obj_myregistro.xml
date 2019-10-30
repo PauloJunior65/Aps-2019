@@ -14,7 +14,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/obj_excluir_igImg"
+            android:id="@+id/obj_myreg_igImg"
             android:layout_width="70dp"
             android:layout_height="70dp"
             app:srcCompat="@drawable/ic_launcher_background" />
@@ -22,41 +22,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="end"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/obj_excluir_lbTexto"
-                android:layout_width="wrap_content"
+                android:id="@+id/obj_myreg_lbTexto"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:text="TextView"
                 android:textColor="@android:color/black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/obj_myreg_btEditar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="horizontal">
+                android:backgroundTint="@color/colorPrimary"
+                android:minHeight="20dip"
+                android:text="Editar"
+                android:textColor="@android:color/white" />
 
-                <Button
-                    android:id="@+id/obj_excluir_btExcluir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:minHeight="20dip"
-                    android:text="Excluir"
-                    android:textColor="@android:color/white" />
-
-                <Button
-                    android:id="@+id/obj_excluir_btVer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:minHeight="20dip"
-                    android:text="Ver"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class ExcluirViewFragment extends Fragment {
     ImageView igImg;
     TextView lbTexto;
     MapView mpView;
+    Button btExcluir;
     Servidor sv;
 
     @Override
@@ -30,6 +32,7 @@ public class ExcluirViewFragment extends Fragment {
         igImg = root.findViewById(R.id.fra_excluir_view_igImg);
         lbTexto = root.findViewById(R.id.fra_excluir_view_lbTexto);
         mpView = root.findViewById(R.id.fra_excluir_view_mpView);
+        btExcluir = root.findViewById(R.id.fra_excluir_view_btExcluir);
         sv = Servidor.getInstance();
         return root;
     }

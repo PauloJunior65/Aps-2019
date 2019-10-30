@@ -14,7 +14,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/obj_excluir_igImg"
+            android:id="@+id/obj_avaliar_igImg"
             android:layout_width="70dp"
             android:layout_height="70dp"
             app:srcCompat="@drawable/ic_launcher_background" />
@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/obj_excluir_lbTexto"
+                android:id="@+id/obj_avaliar_lbTexto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -40,16 +40,16 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/obj_excluir_btExcluir"
+                    android:id="@+id/obj_avaliar_btExcluir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"
                     android:minHeight="20dip"
-                    android:text="Excluir"
+                    android:text="Aprovar"
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/obj_excluir_btVer"
+                    android:id="@+id/obj_avaliar_btVer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"

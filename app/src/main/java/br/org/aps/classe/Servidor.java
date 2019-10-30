@@ -9,6 +9,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import br.org.aps.MainActivity;
@@ -23,8 +26,7 @@ public class Servidor {
     private Context context;
     private NavController nav;
     private ArrayList<Local> locals;
-    private ArrayList<User> users;
-    private User user;
+    private User user = null;
 
 
     private Servidor(Context context) {
@@ -102,23 +104,54 @@ public class Servidor {
         return locals;
     }
 
-    public void setLocals(ArrayList<Local> locals) {
-        this.locals = locals;
-    }
-
-    public ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
-
     public User getUser() {
         return user;
     }
 
+    public boolean isUser() {
+        return user != null;
+    }
+
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void requestLocal(JSONObject json) throws Exception {
+        try {
+            ArrayList<Local> list = new ArrayList<>();
+            JSONArray array = json.getJSONArray("local");
+            for (int i = 0; i<array.length();i++){
+                list.add(new Local(array.getJSONObject(i)));
+            }
+            for (int i = locals.size() - 1; i >= 0; i--) {
+                boolean pass = true;
+                for (int j = list.size() - 1; j >= 0; j--) {
+                    Local obj = locals.get(i), obj2 = list.get(j);
+                    if (obj.getCodigo() == obj2.getCodigo()) {
+                        pass = false;
+                        obj.setAll(obj2);
+                        list.remove(j);
+                        break;
+                    }
+                }
+                if (pass) locals.remove(i);
+            }
+            if (list.size() > 0) locals.addAll(list);
+        }catch (Exception e){
+            throw new Exception("(requestLocal: "+e.getMessage()+" )");
+        }
+    }
+
+    public ArrayList<User> requestUser(JSONObject json) throws Exception {
+        try {
+            ArrayList<User> list = new ArrayList<>();
+            JSONArray array = json.getJSONArray("user");
+            for (int i = 0; i<array.length();i++){
+                list.add(new User(array.getJSONObject(i)));
+            }
+            return list;
+        }catch (Exception e){
+            throw new Exception("(requestLocal: "+e.getMessage()+" )");
+        }
     }
 }

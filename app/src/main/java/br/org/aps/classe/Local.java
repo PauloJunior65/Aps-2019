@@ -26,6 +26,14 @@ public class Local {
         }
     }
 
+    public void setAll(Local obj) {
+        this.nome = obj.getNome();
+        this.desc = obj.getDesc();
+        this.mapa = obj.getMapa();
+        this.tipo = obj.getDesc();
+        this.avaliar = obj.isAvaliar();
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -68,5 +76,9 @@ public class Local {
 
     public boolean isAvaliar() {
         return avaliar;
+    }
+
+    public void setAvaliar(boolean avaliar) {
+        this.avaliar = avaliar;
     }
 }
