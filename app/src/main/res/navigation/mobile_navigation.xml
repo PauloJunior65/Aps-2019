@@ -9,25 +9,41 @@
         android:id="@+id/nav_listar"
         android:name="br.org.aps.ui.listar.ListarFragment"
         android:label="@string/menu_listar"
-        tools:layout="@layout/fragment_listar" />
+        tools:layout="@layout/fragment_listar" >
+        <action
+            android:id="@+id/action_nav_listar_to_nav_listar_view"
+            app:destination="@id/nav_listar_view" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_myregistro"
         android:name="br.org.aps.ui.myregistro.MyRegistroFragment"
         android:label="@string/menu_myregistro"
-        tools:layout="@layout/fragment_myregistro" />
+        tools:layout="@layout/fragment_myregistro" >
+        <action
+            android:id="@+id/action_nav_myregistro_to_nav_myregistro_view"
+            app:destination="@id/nav_myregistro_view" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_excluir"
         android:name="br.org.aps.ui.excluir.ExcluirFragment"
         android:label="@string/menu_excluir"
-        tools:layout="@layout/fragment_excluir" />
+        tools:layout="@layout/fragment_excluir" >
+        <action
+            android:id="@+id/action_nav_excluir_to_nav_excluir_view"
+            app:destination="@id/nav_excluir_view" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_avaliar"
         android:name="br.org.aps.ui.avaliar.AvaliarFragment"
         android:label="@string/menu_avaliar"
-        tools:layout="@layout/fragment_avaliar" />
+        tools:layout="@layout/fragment_avaliar" >
+        <action
+            android:id="@+id/action_nav_avaliar_to_nav_avaliar_view"
+            app:destination="@id/nav_avaliar_view" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_addrem"
@@ -40,4 +56,24 @@
         android:name="br.org.aps.ui.login.LoginFragment"
         android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/nav_listar_view"
+        android:name="br.org.aps.ui.listar.ListarViewFragment"
+        android:label="fragment_listar_view"
+        tools:layout="@layout/fragment_listar_view" />
+    <fragment
+        android:id="@+id/nav_avaliar_view"
+        android:name="br.org.aps.ui.avaliar.AvaliarViewFragment"
+        android:label="fragment_avaliar_view"
+        tools:layout="@layout/fragment_avaliar_view" />
+    <fragment
+        android:id="@+id/nav_excluir_view"
+        android:name="br.org.aps.ui.excluir.ExcluirViewFragment"
+        android:label="fragment_excluir_view"
+        tools:layout="@layout/fragment_excluir_view" />
+    <fragment
+        android:id="@+id/nav_myregistro_view"
+        android:name="br.org.aps.ui.myregistro.MyRegistroViewFragment"
+        android:label="fragment_myregistro_view"
+        tools:layout="@layout/fragment_myregistro_view" />
 </navigation>
