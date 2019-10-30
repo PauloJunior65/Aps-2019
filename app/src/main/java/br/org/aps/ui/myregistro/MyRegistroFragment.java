@@ -54,6 +54,12 @@ public class MyRegistroFragment extends Fragment {
         bar = root.findViewById(R.id.fra_excluir_progressBar);
         scroll = root.findViewById(R.id.fra_excluir_scrollView);
         sv = Servidor.getInstance();
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         reguest();
         return root;
     }
