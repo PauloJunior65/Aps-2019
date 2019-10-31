@@ -44,7 +44,7 @@ public class MyRegistroFragment extends Fragment {
     ProgressBar bar;
     ScrollView scroll;
     Servidor sv;
-    ArrayList<Local> items;
+    ArrayList<Local> items = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,10 +57,10 @@ public class MyRegistroFragment extends Fragment {
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                sv.getNav().navigate(R.id.nav_myregistro_add);
             }
         });
-        reguest();
+        //reguest();
         return root;
     }
 

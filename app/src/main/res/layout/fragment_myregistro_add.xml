@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.myregistro.MyRegistroViewFragment">
+    tools:context=".ui.myregistro.MyRegistroAddFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,13 +17,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/fra_myreg_view_igImg"
+                android:id="@+id/fra_myreg_add_igImg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher" />
 
             <Button
-                android:id="@+id/fra_myreg_view_btImg"
+                android:id="@+id/fra_myreg_add_btImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -33,7 +33,7 @@
                 android:textColor="@android:color/white" />
 
             <EditText
-                android:id="@+id/fra_myreg_view_txNome"
+                android:id="@+id/fra_myreg_add_txNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -41,21 +41,22 @@
                 android:inputType="textMultiLine" />
 
             <EditText
-                android:id="@+id/fra_myreg_view_txDesc"
+                android:id="@+id/fra_myreg_add_txDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:ems="10"
                 android:hint="Escreve a Descricao"
                 android:inputType="textMultiLine" />
 
             <com.google.android.gms.maps.MapView
-                android:id="@+id/fra_myreg_view_mpView"
+                android:id="@+id/fra_myreg_add_mpView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/map"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp" />
 
             <Button
-                android:id="@+id/fra_myreg_view_btSalvar"
+                android:id="@+id/fra_myreg_add_btSalvar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

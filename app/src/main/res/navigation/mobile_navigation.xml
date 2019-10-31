@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_nav_myregistro_to_nav_myregistro_view"
             app:destination="@id/nav_myregistro_view" />
+        <action
+            android:id="@+id/action_nav_myregistro_to_myRegistroAddFragment"
+            app:destination="@id/nav_myregistro_add" />
     </fragment>
 
     <fragment
@@ -76,4 +79,9 @@
         android:name="br.org.aps.ui.myregistro.MyRegistroViewFragment"
         android:label="fragment_myregistro_view"
         tools:layout="@layout/fragment_myregistro_view" />
+    <fragment
+        android:id="@+id/nav_myregistro_add"
+        android:name="br.org.aps.ui.myregistro.MyRegistroAddFragment"
+        android:label="fragment_myregistro_add"
+        tools:layout="@layout/fragment_myregistro_add" />
 </navigation>
