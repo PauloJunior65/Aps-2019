@@ -26,54 +26,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Login"
+                android:text="Login / Registrar"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/fra_login_txlNick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="Nick / Email"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/fra_login_txlSenha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="Senha"
-                android:inputType="text" />
-
-            <Button
-                android:id="@+id/fra_login_btLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Login"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Registrar"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/fra_login_txrNick"
+                android:id="@+id/fra_login_txNick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -85,19 +44,7 @@
                 android:inputType="text" />
 
             <EditText
-                android:id="@+id/fra_login_txrEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/fra_login_txrSenha"
+                android:id="@+id/fra_login_txSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -108,13 +55,28 @@
                 android:hint="Senha"
                 android:inputType="text" />
 
-            <Button
-                android:id="@+id/fra_login_btRegistro"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Registrar"
-                android:textColor="@android:color/white" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fra_login_btLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Login"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/fra_login_btRegistro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Registrar"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,19 +41,30 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/fra_avaliar_view_mpView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/map" />
-
-            <Button
-                android:id="@+id/fra_avaliar_view_btAprova"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Aprovar Registro"
-                android:textColor="@android:color/white" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fra_avaliar_view_btMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:drawableLeft="@android:drawable/ic_menu_mapmode"
+                    android:text="MAPA"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/fra_avaliar_view_btAprova"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Aprovar Registro"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

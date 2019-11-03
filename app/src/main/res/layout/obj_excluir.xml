@@ -47,15 +47,6 @@
                     android:minHeight="20dip"
                     android:text="Excluir"
                     android:textColor="@android:color/white" />
-
-                <Button
-                    android:id="@+id/obj_excluir_btVer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:minHeight="20dip"
-                    android:text="Ver"
-                    android:textColor="@android:color/white" />
             </LinearLayout>
         </LinearLayout>
 

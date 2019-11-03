@@ -4,28 +4,32 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
+
 import androidx.navigation.NavController;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import br.org.aps.MainActivity;
+import br.org.aps.R;
 
 public class Servidor {
     private static Servidor instance;
     private RequestQueue request;
 
-    private String url = "tccunip2019.000webhostapp.com", pasta = "AvE";
-    //private String url = "10.0.0.6", pasta = "AvE";
+    private String url = "apptestpj.000webhostapp.com", pasta = "aps";
 
-    private Context context;
+    private MainActivity context;
     private NavController nav;
-    private ArrayList<Local> locals;
+    private ArrayList<Local> locals = new ArrayList<>();
+    private Local loc;
     private User user = null;
 
 
@@ -33,7 +37,6 @@ public class Servidor {
         if (request == null) {
             this.request = Volley.newRequestQueue(context.getApplicationContext());
         }
-        this.context = context;
     }
 
     public static synchronized Servidor getInstance(MainActivity context) {
@@ -79,7 +82,7 @@ public class Servidor {
         return builder;
     }
 
-    public Context getContext() {
+    public MainActivity getContext() {
         return context;
     }
 
@@ -104,6 +107,18 @@ public class Servidor {
         return locals;
     }
 
+    public Local getLoc() {
+        return loc;
+    }
+
+    public boolean isLoc() {
+        return loc != null;
+    }
+
+    public void setLoc(Local loc) {
+        this.loc = loc;
+    }
+
     public User getUser() {
         return user;
     }
@@ -116,30 +131,19 @@ public class Servidor {
         this.user = user;
     }
 
-    public void requestLocal(JSONObject json) throws Exception {
+    public ArrayList<Local> requestLocal(JSONObject json) throws Exception {
         try {
             ArrayList<Local> list = new ArrayList<>();
             JSONArray array = json.getJSONArray("local");
             for (int i = 0; i<array.length();i++){
                 list.add(new Local(array.getJSONObject(i)));
             }
-            for (int i = locals.size() - 1; i >= 0; i--) {
-                boolean pass = true;
-                for (int j = list.size() - 1; j >= 0; j--) {
-                    Local obj = locals.get(i), obj2 = list.get(j);
-                    if (obj.getCodigo() == obj2.getCodigo()) {
-                        pass = false;
-                        obj.setAll(obj2);
-                        list.remove(j);
-                        break;
-                    }
-                }
-                if (pass) locals.remove(i);
-            }
-            if (list.size() > 0) locals.addAll(list);
+            locals.clear();
+            locals.addAll(list);
         }catch (Exception e){
             throw new Exception("(requestLocal: "+e.getMessage()+" )");
         }
+        return locals;
     }
 
     public ArrayList<User> requestUser(JSONObject json) throws Exception {
@@ -153,5 +157,37 @@ public class Servidor {
         }catch (Exception e){
             throw new Exception("(requestLocal: "+e.getMessage()+" )");
         }
+    }
+
+    public String getLocalString(ArrayList<Local> locals){
+        JSONArray array = new JSONArray();
+        for (Local obj : locals){
+            try {
+                JSONObject o = new JSONObject();
+                o.put("nome",obj.getNome());
+                o.put("lat",obj.getLatitude());
+                o.put("lng",obj.getLongitude());
+                array.put(o);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return array.toString();
+    }
+
+    public void navMap(Local obj){
+        Bundle b = new Bundle();
+        ArrayList<Integer> a = new ArrayList<>();
+        a.add(obj.getCodigo());
+        b.putIntegerArrayList("dado",a);
+        getNav().navigate(R.id.nav_map, b);
+    }
+
+    public void navMap(ArrayList<Local> list){
+        Bundle b = new Bundle();
+        ArrayList<Integer> a = new ArrayList<>();
+        for (Local obj : list)a.add(obj.getCodigo());
+        b.putIntegerArrayList("dado",a);
+        getNav().navigate(R.id.nav_map, b);
     }
 }

@@ -7,8 +7,18 @@
     tools:context=".ui.myregistro.MyRegistroAddFragment">
 
     <ScrollView
+        android:id="@+id/fra_myreg_add_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,11 +59,70 @@
                 android:hint="Escreve a Descricao"
                 android:inputType="textMultiLine" />
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/fra_myreg_add_mpView"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/fra_myreg_add_txEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Endereço"
+                    android:inputType="textMultiLine" />
+
+                <ImageButton
+                    android:id="@+id/fra_myreg_add_btEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_mapmode"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/fra_myreg_add_spTipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/fra_myreg_add_txTipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="text" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/fra_myreg_add_btTipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@android:drawable/ic_menu_add"
+                    android:tint="@android:color/holo_green_dark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fra_myreg_add_tlTipo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp" />
+                android:orientation="vertical"></LinearLayout>
 
             <Button
                 android:id="@+id/fra_myreg_add_btSalvar"
@@ -64,6 +133,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:text="Salvar"
                 android:textColor="@android:color/white" />
+
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

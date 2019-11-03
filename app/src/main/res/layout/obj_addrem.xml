@@ -10,37 +10,31 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@color/color"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/obj_list_igImg"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/obj_addrem_lbTexto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:layout_weight="1"
-            android:gravity="end"
-            android:orientation="vertical">
+            android:text="TextView"
+            android:textColor="@android:color/black" />
 
-            <TextView
-                android:id="@+id/obj_list_lbTexto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="TextView"
-                android:textColor="@android:color/black" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/obj_list_btVer"
+                android:id="@+id/obj_addrem_btExcluir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
                 android:minHeight="20dip"
-                android:text="ver"
+                android:text="Mudar pra Admin"
                 android:textColor="@android:color/white" />
         </LinearLayout>
 

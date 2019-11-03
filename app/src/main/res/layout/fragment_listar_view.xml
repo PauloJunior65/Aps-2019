@@ -21,7 +21,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/fra_list_view_igImg"
@@ -40,10 +41,16 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/fra_list_view_mpView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/map" />
+            <Button
+                android:id="@+id/fra_list_view_btMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:drawableLeft="@android:drawable/ic_menu_mapmode"
+                android:text="MAPA"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

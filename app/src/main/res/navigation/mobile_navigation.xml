@@ -21,9 +21,6 @@
         android:label="@string/menu_myregistro"
         tools:layout="@layout/fragment_myregistro" >
         <action
-            android:id="@+id/action_nav_myregistro_to_nav_myregistro_view"
-            app:destination="@id/nav_myregistro_view" />
-        <action
             android:id="@+id/action_nav_myregistro_to_myRegistroAddFragment"
             app:destination="@id/nav_myregistro_add" />
     </fragment>
@@ -33,9 +30,6 @@
         android:name="br.org.aps.ui.excluir.ExcluirFragment"
         android:label="@string/menu_excluir"
         tools:layout="@layout/fragment_excluir" >
-        <action
-            android:id="@+id/action_nav_excluir_to_nav_excluir_view"
-            app:destination="@id/nav_excluir_view" />
     </fragment>
 
     <fragment
@@ -70,18 +64,17 @@
         android:label="fragment_avaliar_view"
         tools:layout="@layout/fragment_avaliar_view" />
     <fragment
-        android:id="@+id/nav_excluir_view"
-        android:name="br.org.aps.ui.excluir.ExcluirViewFragment"
-        android:label="fragment_excluir_view"
-        tools:layout="@layout/fragment_excluir_view" />
-    <fragment
-        android:id="@+id/nav_myregistro_view"
-        android:name="br.org.aps.ui.myregistro.MyRegistroViewFragment"
-        android:label="fragment_myregistro_view"
-        tools:layout="@layout/fragment_myregistro_view" />
-    <fragment
         android:id="@+id/nav_myregistro_add"
         android:name="br.org.aps.ui.myregistro.MyRegistroAddFragment"
-        android:label="fragment_myregistro_add"
-        tools:layout="@layout/fragment_myregistro_add" />
+        android:label="Adicionar Registro"
+        tools:layout="@layout/fragment_myregistro_add" >
+        <action
+            android:id="@+id/action_nav_myregistro_add_to_blankFragment"
+            app:destination="@id/nav_map" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="br.org.aps.ui.MapFragment"
+        android:label="MAPA"
+        tools:layout="@layout/fragment_map" />
 </navigation>

@@ -21,6 +21,7 @@ import br.org.aps.classe.Servidor;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private NavigationView navigationView;
     private NavController navController;
     private Servidor sv;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_listar, R.id.nav_myregistro, R.id.nav_excluir,
                 R.id.nav_avaliar, R.id.nav_addrem, R.id.nav_login)
@@ -42,11 +43,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         sv = Servidor.getInstance(this);
+        upMenu();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        upMenu();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -60,5 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
     public NavController getNav() {
         return navController;
+    }
+
+    public void upMenu(){
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.nav_admin).setVisible(false);
+        menu.findItem(R.id.nav_myregistro).setVisible(false);
+        if (sv.isUser()){
+            menu.findItem(R.id.nav_login).setVisible(false);
+            menu.findItem(R.id.nav_myregistro).setVisible(true);
+            if (sv.getUser().isAdmin())
+                menu.findItem(R.id.nav_admin).setVisible(true);
+        }
     }
 }

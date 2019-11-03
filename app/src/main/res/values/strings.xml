@@ -14,4 +14,9 @@
     <string name="menu_addrem">Adicionar / Remover Admin</string>
     <string name="menu_login">Login / Registrar</string>
     <string name="menu_sair">Sair</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="maps_key">AIzaSyBf_zByfEaLq278t6ZTo2NDKADtoONELA8</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
