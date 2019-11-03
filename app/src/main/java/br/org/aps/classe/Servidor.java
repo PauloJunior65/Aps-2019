@@ -138,8 +138,7 @@ public class Servidor {
             for (int i = 0; i<array.length();i++){
                 list.add(new Local(array.getJSONObject(i)));
             }
-            locals.clear();
-            locals.addAll(list);
+            this.locals = list;
         }catch (Exception e){
             throw new Exception("(requestLocal: "+e.getMessage()+" )");
         }

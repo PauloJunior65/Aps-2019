@@ -85,7 +85,7 @@ public class ExcluirFragment extends Fragment {
                         try {
                             JSONObject json = new JSONObject(s);
                             if (json.has("local")){
-                                sv.requestLocal(json);
+                                items = new ArrayList<>(sv.requestLocal(json));
                                 ArrayList<String> list1 = new ArrayList<>();
                                 ArrayList<String> list2 = new ArrayList<>();
                                 for (Local obj : items) {

@@ -91,7 +91,7 @@ public class ListarFragment extends Fragment {
                         try {
                             JSONObject json = new JSONObject(s);
                             if (json.has("local")){
-                                items = sv.requestLocal(json);
+                                items = new ArrayList<>(sv.requestLocal(json));
                                 ArrayList<String> list1 = new ArrayList<>();
                                 ArrayList<String> list2 = new ArrayList<>();
                                 for (Local obj : items) {
@@ -112,8 +112,7 @@ public class ListarFragment extends Fragment {
                                 list.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                                 spTipo.setAdapter(list);
                                 carregar();
-                                Toast.makeText(activity, s+"\n\n\n"+sv.getLocals().size(), Toast.LENGTH_LONG).show();
-                            }
+                                }
                         } catch (Exception e) {
                             Toast.makeText(activity, s+"\n\n(Erro: " + e.getMessage() + " )", Toast.LENGTH_LONG).show();
                         }
