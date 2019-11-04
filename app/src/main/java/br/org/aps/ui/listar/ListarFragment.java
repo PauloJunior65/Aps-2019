@@ -134,9 +134,7 @@ public class ListarFragment extends Fragment {
 
     public void carregar() {
         tlItem.removeAllViews();
-        for (int i= 0;i<items.size();i++){
-            if (items.get(i).isAvaliar())items.remove(i);
-        }
+        items = new ArrayList<>(sv.getLocals());
         String tipo = spTipo.getSelectedItem().toString(),
                 por = spPor.getSelectedItem().toString();
         switch (por) {
@@ -164,7 +162,7 @@ public class ListarFragment extends Fragment {
             if (!tipo.equals("TODOS")) {
                 if (obj.isTipo(tipo))pass = true;
             }else pass = true;
-            if (pass){
+            if (pass && !obj.isAvaliar()){
                 LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View row = inflater.inflate(R.layout.obj_listar, null);
                 ImageView img = row.findViewById(R.id.obj_list_igImg);

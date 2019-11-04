@@ -50,7 +50,7 @@ public class AddRemFragment extends Fragment {
     ScrollView scroll;
     FragmentActivity activity;
     Servidor sv;
-    ArrayList<User> items = new ArrayList<>();
+    ArrayList<User> items = new ArrayList<>(),dado;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -89,7 +89,7 @@ public class AddRemFragment extends Fragment {
                     public void onResponse(String s) {
                         try {
                             JSONObject json = new JSONObject(s);
-                            items = sv.requestUser(json);
+                            dado = new ArrayList<>(sv.requestUser(json));
                             ArrayList<String> list1 = new ArrayList<>();
                             ArrayList<String> list2 = new ArrayList<>();
                             list1.add("TODOS");
@@ -125,6 +125,7 @@ public class AddRemFragment extends Fragment {
 
     private void carregar() {
         tlItem.removeAllViews();
+        items = new ArrayList<>(dado);
         String tipo = spTipo.getSelectedItem().toString(),
                 por = spPor.getSelectedItem().toString();
         if (!tipo.equals("TODOS")) {
@@ -162,10 +163,10 @@ public class AddRemFragment extends Fragment {
             String tx = "Nome: " + obj.getNick()+"\nTipo: ";
             if (obj.isAdmin()){
                 tx+="ADMIN";
-                bt.setText("MUDAR PRA ADMIN");
+                bt.setText("MUDAR PRA NORMAL");
             }else {
                 tx+="NORMAL";
-                bt.setText("MUDAR PRA NORMAL");
+                bt.setText("MUDAR PRA ADMIN");
             }
             texto.setText(tx);
             bt.setOnClickListener(new View.OnClickListener() {

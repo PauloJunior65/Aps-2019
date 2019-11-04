@@ -96,6 +96,8 @@ public class AvaliarFragment extends Fragment {
     }
 
     public void carregar(){
+        tlItem.removeAllViews();
+        items = new ArrayList<>(sv.getLocals());
         Collections.sort(items, new Comparator<Local>() {
             @Override
             public int compare(Local t1, Local t2) {
@@ -103,53 +105,51 @@ public class AvaliarFragment extends Fragment {
             }
         });
         for (final Local obj : items){
-            LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View row = inflater.inflate(R.layout.obj_avaliar, null);
-            ImageView img = row.findViewById(R.id.obj_avaliar_igImg);
-            TextView texto = row.findViewById(R.id.obj_avaliar_lbTexto);
-            Button aprovar = row.findViewById(R.id.obj_avaliar_btExcluir);
-            Button ver = row.findViewById(R.id.obj_avaliar_btVer);
-            img.setVisibility(View.GONE);
-            String tx = "Nome: " + obj.getNome() +
-                    "\n\nTipo: ";
-            for (String tipo : obj.getTipoArray()) {
-                tx += tipo + ", ";
+            if (obj.isAvaliar()){
+                LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View row = inflater.inflate(R.layout.obj_avaliar, null);
+                ImageView img = row.findViewById(R.id.obj_avaliar_igImg);
+                TextView texto = row.findViewById(R.id.obj_avaliar_lbTexto);
+                Button aprovar = row.findViewById(R.id.obj_avaliar_btExcluir);
+                Button ver = row.findViewById(R.id.obj_avaliar_btVer);
+                img.setVisibility(View.GONE);
+                String tx = "Nome: " + obj.getNome() +
+                        "\n\nTipo: ";
+                for (String tipo : obj.getTipoArray()) {
+                    tx += tipo + ", ";
+                }
+                texto.setText(tx);
+                aprovar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
+                                .appendPath("addeditlocal.php").build().toString(),
+                                null,null
+                        ) {
+                            @Override
+                            protected Map<String, String> getParams() {
+                                Map<String, String> params = new HashMap<>();
+                                params.put("codigo", String.valueOf(obj.getCodigo()));
+                                params.put("avaliar", String.valueOf(0));
+                                return params;
+                            }
+                        };
+                        sv.addRequest(req, "avaliar");
+                        obj.setAvaliar(false);
+                        tlItem.removeView(row);
+                    }
+                });
+                ver.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Bundle b = new Bundle();
+                        b.putInt("codigo", obj.getCodigo());
+                        sv.getNav().getGraph().findNode(R.id.nav_avaliar_view).setLabel(obj.getNome());
+                        sv.getNav().navigate(R.id.nav_avaliar_view,b);
+                    }
+                });
+                tlItem.addView(row);
             }
-            texto.setText(tx);
-            aprovar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
-                            .appendPath("addeditlocal.php").build().toString(),
-                            null,null
-                    ) {
-                        @Override
-                        protected Map<String, String> getParams() {
-                            Map<String, String> params = new HashMap<>();
-                            params.put("codigo", String.valueOf(obj.getCodigo()));
-                            params.put("avaliar", String.valueOf(0));
-                            return params;
-                        }
-                    };
-                    sv.addRequest(req, "avaliar");
-                    obj.setAvaliar(false);
-                    tlItem.removeView(row);
-                }
-            });
-            ver.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Bundle b = new Bundle();
-                    b.putInt("codigo", obj.getCodigo());
-                    sv.getNav().getGraph().findNode(R.id.nav_avaliar_view).setLabel(obj.getNome());
-                    sv.getNav().navigate(R.id.nav_avaliar_view,b);
-                }
-            });
-            tlItem.addView(row);
         }
-    }
-
-    private void reguestAvaliar(final Local obj) {
-
     }
 }

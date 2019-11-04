@@ -170,27 +170,23 @@ public class ExcluirFragment extends Fragment {
             excluir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    reguestExcluir(obj);
-                    items.remove(obj);
+                    StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
+                            .appendPath("droplocal.php").build().toString(),
+                            null,null
+                    ) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("codigo", String.valueOf(obj.getCodigo()));
+                            return params;
+                        }
+                    };
+                    sv.addRequest(req, "excluir");
+                    sv.getLocals().remove(obj);
                     tlItem.removeView(row);
                 }
             });
             tlItem.addView(row);
         }
-    }
-
-    private void reguestExcluir(final Local obj) {
-        StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
-                .appendPath("droplocal.php").build().toString(),
-                null,null
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("codigo", String.valueOf(obj.getCodigo()));
-                return params;
-            }
-        };
-        sv.addRequest(req, "excluir");
     }
 }

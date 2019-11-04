@@ -39,12 +39,12 @@ import br.org.aps.classe.Servidor;
 import br.org.aps.ui.excluir.ExcluirFragment;
 import br.org.aps.ui.listar.ListarFragment;
 
-public class MyRegistroAddFragment extends Fragment{
+public class MyRegistroAddFragment extends Fragment {
 
     Spinner spTipo;
     LinearLayout tlTipo;
-    EditText txNome,txDesc,txEnd,txTipo;
-    ImageButton btEnd,btTipo;
+    EditText txNome, txDesc, txEnd, txTipo;
+    ImageButton btEnd, btTipo;
     Button btSalvar;
     FragmentActivity activity;
     Servidor sv;
@@ -67,9 +67,9 @@ public class MyRegistroAddFragment extends Fragment{
         activity = getActivity();
         sv = Servidor.getInstance();
         int codigo = getArguments().getInt("codigo", -1);
-        if (codigo == 0){
+        if (codigo == 0) {
             item = new Local(sv.getUser().getCodigo());
-        }else {
+        } else {
             for (Local obj : sv.getLocals()) {
                 if (obj.getCodigo() == codigo) {
                     item = obj;
@@ -81,20 +81,20 @@ public class MyRegistroAddFragment extends Fragment{
             btEnd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    item.setEdit(txNome.getText().toString(),txDesc.getText().toString(),
-                            txEnd.getText().toString(),tipos);
+                    item.setEdit(txNome.getText().toString(), txDesc.getText().toString(),
+                            txEnd.getText().toString(), tipos);
                     sv.setLoc(item);
                     Bundle b = new Bundle();
-                    b.putBoolean("editar",true);
+                    b.putBoolean("editar", true);
                     sv.getNav().navigate(R.id.nav_map, b);
                 }
             });
             btSalvar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    item.setEdit(txNome.getText().toString(),txDesc.getText().toString(),
-                            txEnd.getText().toString(),tipos);
-                    if (item.getCodigo() == 0)sv.getLocals().add(item);
+                    item.setEdit(txNome.getText().toString(), txDesc.getText().toString(),
+                            txEnd.getText().toString(), tipos);
+                    if (item.getCodigo() == 0) sv.getLocals().add(item);
                     reguestRegistro(item);
                     sv.getNav().navigateUp();
                 }
@@ -102,9 +102,9 @@ public class MyRegistroAddFragment extends Fragment{
             spTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (i==0){
+                    if (i == 0) {
                         txTipo.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         txTipo.setVisibility(View.INVISIBLE);
                         txTipo.setText("");
                     }
@@ -119,10 +119,10 @@ public class MyRegistroAddFragment extends Fragment{
                 @Override
                 public void onClick(View view) {
                     String tx;
-                    if (txTipo.getText().toString().isEmpty()){
-                        tx=spTipo.getSelectedItem().toString();
-                    }else tx=txTipo.getText().toString();
-                    if (!tipos.contains(tx))tipos.add(tx);
+                    if (txTipo.getText().toString().isEmpty()) {
+                        tx = spTipo.getSelectedItem().toString();
+                    } else tx = txTipo.getText().toString();
+                    if (!tipos.contains(tx)) tipos.add(tx);
                     carregarTipo();
                 }
             });
@@ -134,7 +134,7 @@ public class MyRegistroAddFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        if (sv.isLoc())item = sv.getLoc();
+        if (sv.isLoc()) item = sv.getLoc();
         carregar();
     }
 
@@ -146,7 +146,7 @@ public class MyRegistroAddFragment extends Fragment{
         carregarTipo();
     }
 
-    private void carregarTipo(){
+    private void carregarTipo() {
         ArrayList<String> list1 = new ArrayList<>();
         for (Local obj : sv.getLocals()) {
             for (String tx : obj.getTipoArray()) {
@@ -161,7 +161,7 @@ public class MyRegistroAddFragment extends Fragment{
         spTipo.setAdapter(list);
         Collections.sort(tipos);
         tlTipo.removeAllViews();
-        for (final String tx : tipos){
+        for (final String tx : tipos) {
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View row = inflater.inflate(R.layout.obj_myregistro_add, null);
             TextView texto = row.findViewById(R.id.obj_myreg_add_lbTexto);
@@ -179,6 +179,14 @@ public class MyRegistroAddFragment extends Fragment{
     }
 
     private void reguestRegistro(final Local obj) {
+        final String codigo = String.valueOf(obj.getCodigo()),
+                usecodigo = String.valueOf(obj.getUsecodigo()),
+                nome = obj.getNome(),
+                desc = obj.getDesc(),
+                tipo = obj.getTipo(),
+                mapa = obj.getMapa(),
+                latitude = String.valueOf(obj.getLatitude()),
+                longitude = String.valueOf(obj.getLongitude());
         StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
                 .appendPath("addeditlocal.php").build().toString(),
                 new Response.Listener<String>() {
@@ -186,11 +194,11 @@ public class MyRegistroAddFragment extends Fragment{
                     public void onResponse(String s) {
                         try {
                             JSONObject json = new JSONObject(s);
-                            if (json.optBoolean("ok",false)){
+                            if (json.optBoolean("ok", false)) {
                                 obj.setCodigo(json.getInt("codigo"));
                             }
                         } catch (Exception e) {
-                            Toast.makeText(activity, s+"\n\n(Erro: " + e.getMessage() + " )", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, s + "\n\n(Erro: " + e.getMessage() + " )", Toast.LENGTH_LONG).show();
                         }
                     }
                 },
@@ -204,14 +212,14 @@ public class MyRegistroAddFragment extends Fragment{
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("codigo", String.valueOf(obj.getCodigo()));
-                params.put("usecodigo", String.valueOf(obj.getUsecodigo()));
-                params.put("nome", obj.getNome());
-                params.put("desc", obj.getDesc());
-                params.put("tipo", obj.getTipo());
-                params.put("mapa", obj.getMapa());
-                params.put("latitude", String.valueOf(obj.getLatitude()));
-                params.put("longitude", String.valueOf(obj.getLongitude()));
+                params.put("codigo", codigo);
+                params.put("usecodigo", usecodigo);
+                params.put("nome", nome);
+                params.put("desc", desc);
+                params.put("tipo", tipo);
+                params.put("mapa", mapa);
+                params.put("latitude", latitude);
+                params.put("longitude", longitude);
                 return params;
             }
         };
