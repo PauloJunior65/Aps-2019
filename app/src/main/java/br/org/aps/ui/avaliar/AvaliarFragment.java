@@ -58,7 +58,7 @@ public class AvaliarFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        carregar();
+        reguest();
     }
 
     private void reguest() {

@@ -80,6 +80,12 @@ public class ListarFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        reguest();
+    }
+
     public void reguest() {
         bar.setVisibility(View.VISIBLE);
         scroll.setVisibility(View.GONE);
