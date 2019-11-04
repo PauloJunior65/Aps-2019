@@ -63,7 +63,7 @@ public class MyRegistroFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        carregar();
+        reguest();
     }
 
     public void reguest() {
