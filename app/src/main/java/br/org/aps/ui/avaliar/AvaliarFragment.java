@@ -49,7 +49,7 @@ public class AvaliarFragment extends Fragment {
         tlItem = root.findViewById(R.id.fra_avaliar_tlItem);
         bar = root.findViewById(R.id.fra_avaliar_progressBar);
         scroll = root.findViewById(R.id.fra_avaliar_scrollView);
-        activity =getActivity();
+        activity = getActivity();
         sv = Servidor.getInstance();
         reguest();
         return root;
@@ -71,13 +71,12 @@ public class AvaliarFragment extends Fragment {
                     public void onResponse(String s) {
                         try {
                             JSONObject json = new JSONObject(s);
-                            if (json.has("local")){
+                            if (json.has("local")) {
                                 items = new ArrayList<>(sv.requestLocal(json));
                                 carregar();
                             }
-                            Toast.makeText(activity, s+"\n\n\n"+sv.getLocals().size(), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
-                            Toast.makeText(activity, s+"\n\n(Erro: " + e.getMessage() + " )", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, s + "\n\n(Erro: " + e.getMessage() + " )", Toast.LENGTH_LONG).show();
                         }
                         bar.setVisibility(View.GONE);
                         scroll.setVisibility(View.VISIBLE);
@@ -95,7 +94,7 @@ public class AvaliarFragment extends Fragment {
         sv.addRequest(req, "login");
     }
 
-    public void carregar(){
+    public void carregar() {
         tlItem.removeAllViews();
         items = new ArrayList<>(sv.getLocals());
         Collections.sort(items, new Comparator<Local>() {
@@ -104,8 +103,8 @@ public class AvaliarFragment extends Fragment {
                 return t1.getCodigo() - t2.getCodigo();
             }
         });
-        for (final Local obj : items){
-            if (obj.isAvaliar()){
+        for (final Local obj : items) {
+            if (obj.isAvaliar()) {
                 LayoutInflater inflater = (LayoutInflater) this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View row = inflater.inflate(R.layout.obj_avaliar, null);
                 ImageView img = row.findViewById(R.id.obj_avaliar_igImg);
@@ -124,7 +123,7 @@ public class AvaliarFragment extends Fragment {
                     public void onClick(View view) {
                         StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
                                 .appendPath("addeditlocal.php").build().toString(),
-                                null,null
+                                null, null
                         ) {
                             @Override
                             protected Map<String, String> getParams() {
@@ -145,7 +144,7 @@ public class AvaliarFragment extends Fragment {
                         Bundle b = new Bundle();
                         b.putInt("codigo", obj.getCodigo());
                         sv.getNav().getGraph().findNode(R.id.nav_avaliar_view).setLabel(obj.getNome());
-                        sv.getNav().navigate(R.id.nav_avaliar_view,b);
+                        sv.getNav().navigate(R.id.nav_avaliar_view, b);
                     }
                 });
                 tlItem.addView(row);
