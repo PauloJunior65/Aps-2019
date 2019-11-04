@@ -158,7 +158,7 @@ public class AddRemFragment extends Fragment {
         for (final User obj : items) {
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row = inflater.inflate(R.layout.obj_addrem, null);
-            TextView texto = row.findViewById(R.id.obj_addrem_lbTexto);
+            final TextView texto = row.findViewById(R.id.obj_addrem_lbTexto);
             final Button bt = row.findViewById(R.id.obj_addrem_btExcluir);
             String tx = "Nome: " + obj.getNick()+"\nTipo: ";
             if (obj.isAdmin()){
@@ -172,14 +172,18 @@ public class AddRemFragment extends Fragment {
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    reguestAddRem(obj);
+                    String tx = "Nome: " + obj.getNick()+"\nTipo: ";
                     if (obj.isAdmin()){
-                        bt.setText("MUDAR PRA NORMAL");
+                        tx+="NORMAL";
+                        bt.setText("MUDAR PRA ADMIN");
                         obj.setAdmin(false);
                     }else {
-                        bt.setText("MUDAR PRA ADMIN");
+                        tx+="ADMIN";
+                        bt.setText("MUDAR PRA NORMAL");
                         obj.setAdmin(true);
                     }
+                    texto.setText(tx);
+                    reguestAddRem(obj);
                 }
             });
             tlItem.addView(row);
@@ -187,17 +191,19 @@ public class AddRemFragment extends Fragment {
     }
 
     private void reguestAddRem(final User obj) {
+        final boolean admin = obj.isAdmin();
         StringRequest req = new StringRequest(Request.Method.POST, sv.getUrl()
                 .appendPath("addedituser.php").build().toString(),
-                null,null
+                null, null
         ) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("codigo", String.valueOf(obj.getCodigo()));
-                if (obj.isAdmin()){
-                    params.put("admin", String.valueOf(0));
-                }else params.put("admin", String.valueOf(1));
+                params.put("nick", obj.getNick());
+                if (admin){
+                    params.put("admin", String.valueOf(1));
+                }else params.put("admin", String.valueOf(0));
                 return params;
             }
         };
