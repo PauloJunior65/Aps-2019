@@ -32,25 +32,18 @@ import br.org.aps.classe.Servidor;
 import br.org.aps.ui.myregistro.MyRegistroAddFragment;
 
 public class MapFragment extends Fragment {
-    SupportMapFragment mapFragment;
     private GoogleMap mMap;
-    FragmentActivity activity;
-    Servidor sv;
-    boolean editar;
+    private FragmentActivity activity;
+    private Servidor sv;
+    private boolean editar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_map, container, false);
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fra_map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fra_map);
         activity = getActivity();
         sv = Servidor.getInstance();
-        return root;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         editar = getArguments().getBoolean("editar",false);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -103,5 +96,6 @@ public class MapFragment extends Fragment {
                 }
             }
         });
+        return root;
     }
 }
