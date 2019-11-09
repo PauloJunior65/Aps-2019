@@ -48,7 +48,7 @@ public class MyRegistroAddFragment extends Fragment {
     Button btSalvar;
     FragmentActivity activity;
     Servidor sv;
-    Local item;
+    Local item = null;
     ArrayList<String> tipos = new ArrayList<>();
 
     @Override

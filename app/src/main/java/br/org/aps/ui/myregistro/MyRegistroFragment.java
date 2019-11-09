@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.Navigation;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -51,8 +52,10 @@ public class MyRegistroFragment extends Fragment {
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (sv.isLoc()) sv.setLoc(null);
                 Bundle b = new Bundle();
                 b.putInt("codigo", 0);
+                sv.getNav().getGraph().findNode(R.id.nav_myregistro_add).setLabel("Adicionar Registro");
                 sv.getNav().navigate(R.id.nav_myregistro_add,b);
             }
         });
@@ -120,6 +123,7 @@ public class MyRegistroFragment extends Fragment {
                 editar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if (sv.isLoc()) sv.setLoc(null);
                         Bundle b = new Bundle();
                         b.putInt("codigo", obj.getCodigo());
                         sv.getNav().getGraph().findNode(R.id.nav_myregistro_add).setLabel(obj.getNome());
