@@ -24,12 +24,6 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/fra_list_view_igImg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
-
             <TextView
                 android:id="@+id/fra_list_view_lbTexto"
                 android:layout_width="match_parent"

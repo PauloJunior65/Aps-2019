@@ -30,7 +30,6 @@ public class ListarViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_listar_view, container, false);
-        igImg = root.findViewById(R.id.fra_list_view_igImg);
         lbTexto = root.findViewById(R.id.fra_list_view_lbTexto);
         btMap = root.findViewById(R.id.fra_list_view_btMap);
         activity = getActivity();

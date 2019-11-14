@@ -24,7 +24,6 @@ import br.org.aps.classe.Local;
 import br.org.aps.classe.Servidor;
 
 public class AvaliarViewFragment extends Fragment {
-    ImageView igImg;
     TextView lbTexto;
     Button btAprovar,btMap;
     FragmentActivity activity;
@@ -35,7 +34,6 @@ public class AvaliarViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_avaliar_view, container, false);
-        igImg = root.findViewById(R.id.fra_avaliar_view_igImg);
         lbTexto = root.findViewById(R.id.fra_avaliar_view_lbTexto);
         btMap = root.findViewById(R.id.fra_avaliar_view_btMap);
         btAprovar = root.findViewById(R.id.fra_avaliar_view_btAprova);
