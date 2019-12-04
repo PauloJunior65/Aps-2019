@@ -97,14 +97,16 @@ public class ListarFragment extends Fragment {
                         try {
                             JSONObject json = new JSONObject(s);
                             if (json.has("local")){
-                                items = new ArrayList<>(sv.requestLocal(json));
+                                items.clear();
+                                ArrayList<Local> item = new ArrayList<>(sv.requestLocal(json));
                                 ArrayList<String> list1 = new ArrayList<>();
                                 ArrayList<String> list2 = new ArrayList<>();
-                                for (Local obj : items) {
+                                for (Local obj : item) {
                                     if (!obj.isAvaliar()){
                                         for (String tx : obj.getTipoArray()) {
                                             if (!list1.contains(tx)) list1.add(tx);
                                         }
+                                        items.add(obj);
                                     }
                                 }
                                 Collections.sort(list1);
@@ -140,7 +142,6 @@ public class ListarFragment extends Fragment {
 
     public void carregar() {
         tlItem.removeAllViews();
-        items = new ArrayList<>(sv.getLocals());
         String tipo = spTipo.getSelectedItem().toString(),
                 por = spPor.getSelectedItem().toString();
         switch (por) {
